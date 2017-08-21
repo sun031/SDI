@@ -496,7 +496,7 @@ def stack(pathlst, extname="*.BHZ.sac", taper_length=5.0, type="hann", filt=True
 
         tr.data=summ
         if filt:
-            tr.filter(type="bandpass", freqmin=freqmin, freqmax=freqmax)
+            tr.filter(type="bandpass", freqmin=freqmin, freqmax=freqmax, corners=4, zerophase=True)
         tr.normalize()
         tr.data = tr.data * hann
 
