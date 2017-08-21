@@ -64,7 +64,7 @@ def preprocess(filelst, freqmin=0.05, freqmax=5.0, evdp_unit="m", sample_rate=40
             tr = st[0]
         except:
             continue
-            
+
         # pre-processing data
         tr1 = tr.copy()
         tr1.detrend(type="linear")
@@ -73,7 +73,8 @@ def preprocess(filelst, freqmin=0.05, freqmax=5.0, evdp_unit="m", sample_rate=40
         tr1.filter(type="bandpass", freqmin=freqmin, freqmax=freqmax, zerophase=True)
 
         if tr.stats.sampling_rate!=sample_rate:
-            tr1.interpolate(sampling_rate=sample_rate)
+            # tr1.interpolate(sampling_rate=sample_rate)
+            tr1.resample(sampling_rate=sample_rate)
 
         # calculating the traveltime of P, S
         arrivals = model.get_travel_times(source_depth_in_km=tr1.stats.sac.evdp/evdp,
