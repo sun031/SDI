@@ -67,7 +67,7 @@ def preprocess(filelst, freqmin=0.05, freqmax=5.0, evdp_unit="m", sample_rate=40
         tr1.detrend(type="linear")
         tr1.detrend(type="demean")
         tr1.taper(type="cosine", max_percentage=0.05, side="both")
-        tr1.filter(type="bandpass", freqmin=freqmin, freqmax=freqmax)
+        tr1.filter(type="bandpass", freqmin=freqmin, freqmax=freqmax, zerophase=True)
 
         if tr.stats.sampling_rate!=sample_rate:
             tr1.interpolate(sampling_rate=sample_rate)
