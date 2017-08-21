@@ -59,9 +59,12 @@ def preprocess(filelst, freqmin=0.05, freqmax=5.0, evdp_unit="m", sample_rate=40
 
         print "Pre-processing:", file
 
-        st = read(file)
-        tr = st[0]
-
+        try:
+            st = read(file)
+            tr = st[0]
+        except:
+            continue
+            
         # pre-processing data
         tr1 = tr.copy()
         tr1.detrend(type="linear")
